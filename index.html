@@ -18,7 +18,7 @@
 
         body {
             font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg-color);
+            background: linear-gradient(135deg, #fce4ec, #e8eaf6);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -30,23 +30,25 @@
 
         .container {
             width: 100%;
-            max-width: 400px;
+            max-width: 800px;
             position: relative;
             perspective: 1000px;
         }
 
-        /* --- Envelope Styles --- */
+        /* --- Gaya Amplop Lucu --- */
         .envelope {
-            width: 300px;
-            height: 200px;
+            width: 600px;
+            height: 350px;
             background-color: var(--primary-color);
             position: relative;
             margin: auto;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            transition: transform 1s ease-in-out;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
             cursor: pointer;
             z-index: 100;
+            background-image: repeating-linear-gradient(45deg, #ff8dc7 0, #ff8dc7 10px, transparent 10px, transparent 20px);
+            border: 5px solid #fff;
         }
 
         .envelope:before, .envelope:after {
@@ -57,19 +59,20 @@
             border-color: transparent transparent var(--primary-color) transparent;
             width: 0;
             height: 0;
+            z-index: 1;
         }
 
         .envelope:before {
-            border-width: 100px 150px 0 150px;
+            border-width: 175px 300px 0 300px;
             transform: translateY(100%);
             left: 0;
         }
 
         .envelope:after {
-            border-width: 0 150px 100px 150px;
+            border-width: 0 300px 175px 300px;
             transform: rotateX(0deg);
             transform-origin: top;
-            transition: transform 0.5s ease-in-out 0.5s;
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.5s;
         }
 
         .envelope.open:after {
@@ -77,26 +80,27 @@
             z-index: -1;
         }
 
-        /* --- Letter Styles --- */
+        /* --- Gaya Surat Lucu --- */
         .letter {
             width: 90%;
-            max-width: 350px;
-            height: 90%;
-            max-height: 500px;
-            background-color: var(--secondary-color);
+            max-width: 750px;
+            height: 95%;
+            max-height: 900px;
+            background: linear-gradient(to bottom, #fff0f5, #ffe4e1);
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0.1);
             opacity: 0;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-            padding: 20px;
-            overflow: hidden;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.8s ease-in-out;
+            padding: 50px;
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
+            border: 2px dashed var(--primary-color);
         }
 
         .letter.show {
@@ -104,16 +108,26 @@
             opacity: 1;
             z-index: 200;
         }
+        
+        .letter::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .letter::-webkit-scrollbar-thumb {
+            background-color: #ff8dc7;
+            border-radius: 4px;
+        }
 
         .page {
             width: 100%;
-            height: 100%;
+            min-height: 100%;
             display: none;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             text-align: center;
             animation: fadeIn 0.5s ease-in-out;
+            padding-bottom: 50px; /* Jarak untuk navigasi */
         }
 
         .page.active {
@@ -122,102 +136,123 @@
 
         .page h1 {
             font-family: 'Pacifico', cursive;
-            color: var(--primary-color);
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            color: #d81b60;
+            font-size: 4.5em;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
         }
 
         .page-photo {
             width: 80%;
             height: auto;
-            max-width: 250px;
-            border-radius: 15px;
+            max-width: 450px;
+            border-radius: 25px;
             object-fit: cover;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            border: 2px solid #ccc; /* Bingkai kotak */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            border: 4px solid #ffc2d4;
         }
 
         .page-text {
-            font-size: 1.1em;
-            line-height: 1.6;
-            padding: 0 10px;
+            font-size: 1.6em;
+            line-height: 1.8;
+            padding: 0 25px;
+            margin-bottom: 25px;
+            color: #555;
         }
 
         .hearts {
             color: var(--primary-color);
-            font-size: 2em;
-            margin: 15px 0;
+            font-size: 4em;
+            margin: 25px 0;
             animation: pulse 1s infinite;
         }
 
         .signature {
             font-family: 'Pacifico', cursive;
-            margin-top: 20px;
-            font-size: 1.2em;
-            color: var(--primary-color);
+            margin-top: 40px;
+            font-size: 2em;
+            color: #d81b60;
         }
 
-        /* --- Navigation & Control Styles --- */
-        .nav-buttons {
-            position: absolute;
-            bottom: 20px;
+        /* --- Navigasi & Kontrol Baru --- */
+        .nav-container {
+            display: none;
+            position: fixed; /* Ubah menjadi fixed */
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
+            width: 100%;
+            max-width: 800px;
+            padding: 15px 0;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-top: 1px solid #ffb2d4;
+            backdrop-filter: blur(5px);
+            z-index: 250;
+        }
+        
+        .nav-container.show {
             display: flex;
-            gap: 15px;
-            z-index: 300;
         }
 
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        
         .nav-btn {
-            background-color: var(--primary-color);
-            color: white;
+            background-color: transparent;
             border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.2em;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: background-color 0.3s, transform 0.2s;
+            color: var(--primary-color);
+            font-size: 1.2em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s, transform 0.2s;
         }
 
         .nav-btn:hover {
-            background-color: #d1478f;
-            transform: translateY(-2px);
+            color: #d1478f;
+            transform: scale(1.1);
         }
 
         .nav-btn:disabled {
-            background-color: #ccc;
+            color: #ccc;
             cursor: not-allowed;
-            box-shadow: none;
+            transform: none;
+        }
+
+        .nav-btn i {
+            font-size: 2.5em;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
         .page-indicator {
-            position: absolute;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.9em;
+            font-size: 1.2em;
             color: #888;
-            z-index: 300;
         }
 
         .music-control {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 30px;
+            right: 30px;
             background-color: var(--primary-color);
             color: white;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             display: none;
             justify-content: center;
             align-items: center;
-            font-size: 1.2em;
+            font-size: 1.5em;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.25);
             z-index: 350;
             transition: transform 0.3s ease;
         }
@@ -230,12 +265,12 @@
             transform: scale(1.1);
         }
 
-        /* --- Love hearts animation --- */
+        /* --- Animasi Hati --- */
         .love {
             position: fixed;
             top: 100vh;
             color: var(--primary-color);
-            font-size: 2em;
+            font-size: 2.5em;
             animation: flyup 5s linear forwards;
             pointer-events: none;
             z-index: 50;
@@ -260,8 +295,8 @@
             100% { transform: scale(1); }
         }
 
-        /* --- Mobile-first adjustments --- */
-        @media (max-width: 450px) {
+        /* --- Penyesuaian untuk Layar Mobile --- */
+        @media (max-width: 768px) {
             body {
                 padding: 10px;
             }
@@ -273,6 +308,8 @@
             .envelope {
                 width: 280px;
                 height: 180px;
+                border-radius: 15px;
+                background-image: repeating-linear-gradient(45deg, #ff8dc7 0, #ff8dc7 5px, transparent 5px, transparent 10px);
             }
 
             .envelope:before {
@@ -286,25 +323,41 @@
             .letter {
                 width: 95%;
                 height: 95%;
-                padding: 15px;
+                padding: 20px;
+                max-width: 350px;
+                max-height: 500px;
+                border-radius: 20px;
             }
 
             .page h1 {
-                font-size: 2em;
+                font-size: 2.5em;
+                margin-bottom: 20px;
             }
 
             .page-text {
-                font-size: 1em;
+                font-size: 1.1em;
+                padding: 0 10px;
+            }
+
+            .page-photo {
+                max-width: 300px;
+                border-radius: 20px;
+            }
+
+            .hearts {
+                font-size: 2.5em;
             }
 
             .signature {
-                font-size: 1.1em;
+                font-size: 1.2em;
             }
 
             .nav-btn {
-                width: 45px;
-                height: 45px;
                 font-size: 1em;
+            }
+
+            .nav-btn i {
+                font-size: 2em;
             }
 
             .music-control {
@@ -322,90 +375,90 @@
         <div class="envelope" id="envelope"></div>
 
         <div class="letter" id="letter">
-            <div class="page" id="page-0">
+            <div class="page active" id="page-0">
                 <h1>Maafin Aku, Sayangku~</h1>
-                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto1.jpeg" alt="Foto Kita 1" class="page-photo">
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/main/foto1.jpeg" alt="Foto Kita 1" class="page-photo">
                 <div class="hearts">♥ ♥ ♥</div>
+                <div class="page-text">Aku tahu, mungkin ini terdengar klise, tapi hatiku benar-benar hancur setiap kali melihat kamu sedih karena ulahku. Maafin aku ya, sayang. Aku janji bakal lebih baik lagi.</div>
             </div>
 
             <div class="page" id="page-1">
-                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto2.jpeg" alt="Foto Kita 2" class="page-photo">
-                <div class="page-text">Haii kamu yang bikin hari-hariku berwarna 🌈 Aku mau ngucapin sesuatu yang penting nih...</div>
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/main/foto2.jpeg" alt="Foto Kita 2" class="page-photo">
+                <div class="page-text">Haii kamu yang bikin hari-hariku berwarna 🌈 Aku mau ngucapin sesuatu yang penting nih, sesuatu yang sudah mengganggu pikiranku sejak tadi. Aku harap kamu mau meluangkan sedikit waktu untuk membacanya sampai selesai.</div>
             </div>
 
             <div class="page" id="page-2">
-                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto3.jpeg" alt="Foto Kita 3" class="page-photo">
-                <div class="page-text">Aku mau minta maaf kalau tadi aku kayak kucing kesetrum ⚡ Aku nggak sengaja bikin kamu kesel.</div>
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/main/foto3.jpeg" alt="Foto Kita 3" class="page-photo">
+                <div class="page-text">Aku mau minta maaf kalau tadi aku kayak kucing kesetrum ⚡ Aku nggak sengaja bikin kamu kesel. Aku terlalu terbawa suasana sampai lupa kalau kata-kataku bisa menyakitimu. Aku benar-benar menyesal.</div>
             </div>
 
             <div class="page" id="page-3">
-                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto4.jpeg" alt="Foto Kita 4" class="page-photo">
-                <div class="page-text">Kamu tahu kan, kadang otakku suka error kaya WiFi lemot... Tapi percayalah, niatku selalu baik.</div>
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/main/foto4.jpeg" alt="Foto Kita 4" class="page-photo">
+                <div class="page-text">Kamu tahu kan, kadang otakku suka error kaya WiFi lemot... Tapi percayalah, niatku selalu baik. Aku cuma pengen ngasih yang terbaik buat kamu, tapi kadang caraku salah. Maafin aku ya, tolong kasih aku kesempatan untuk perbaiki.</div>
             </div>
 
             <div class="page" id="page-4">
-                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto5.jpeg" alt="Foto Kita 5" class="page-photo">
-                <div class="page-text">Tapi hatiku selalu full signal buat kamu 💖 Nggak ada yang bisa ngeganggu frekuensi cintaku ke kamu.</div>
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/main/foto5.jpeg" alt="Foto Kita 5" class="page-photo">
+                <div class="page-text">Tapi hatiku selalu full signal buat kamu 💖 Nggak ada yang bisa ngeganggu frekuensi cintaku ke kamu. Kamu adalah satu-satunya orang yang mengisi ruang hatiku. Aku harap kamu bisa merasakan ketulusan maafku.</div>
                 <div class="hearts">♥ ♥ ♥</div>
             </div>
 
             <div class="page" id="page-5">
-                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto6.jpeg" alt="Foto Kita 6" class="page-photo">
-                <div class="page-text">Kamu tuh kayak stiker favorit di WA aku. Setiap liat kamu, langsung pengen save terus di hati.</div>
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/main/foto6.jpeg" alt="Foto Kita 6" class="page-photo">
+                <div class="page-text">Kamu tuh kayak stiker favorit di WA aku. Setiap liat kamu, langsung pengen save terus di hati. Kamu unik, lucu, dan selalu bisa bikin aku senyum. Aku nggak mau kehilangan stiker favoritku ini.</div>
             </div>
 
             <div class="page" id="page-6">
-                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto7.jpeg" alt="Foto Kita 7" class="page-photo">
-                <div class="page-text">Selalu bikin chat kita special dan pengen aku koleksi terus 🥰 Kayak chat pertama kita yang sampai sekarang masih aku screenshot.</div>
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/main/foto7.jpeg" alt="Foto Kita 7" class="page-photo">
+                <div class="page-text">Selalu bikin chat kita spesial dan pengen aku koleksi terus 🥰 Kayak chat pertama kita yang sampai sekarang masih aku screenshot. Semua kenangan itu terlalu berharga untuk dihancurkan oleh kesalahanku.</div>
             </div>
 
             <div class="page" id="page-7">
-                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto8.jpeg" alt="Foto Kita 8" class="page-photo">
-                <div class="page-text">Aku janji bakal lebih perhatian, nggak kayak baterai HP yang cepet lowbat 🔋 Aku bakal charge terus rasa sayangku buat kamu.</div>
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/main/foto8.jpeg" alt="Foto Kita 8" class="page-photo">
+                <div class="page-text">Aku janji bakal lebih perhatian, nggak kayak baterai HP yang cepet lowbat 🔋 Aku bakal charge terus rasa sayangku buat kamu, biar hubungan kita selalu penuh energi positif.</div>
             </div>
 
             <div class="page" id="page-8">
-                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto9.jpeg" alt="Foto Kita 9" class="page-photo">
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/main/foto9.jpeg" alt="Foto Kita 9" class="page-photo">
                 <div class="hearts">♥ ♥ ♥</div>
-                <div class="page-text">Makasih ya udah mau nerima aku apa adanya. Aku sayang banget sama kamu!</div>
+                <div class="page-text">Makasih ya udah mau nerima aku apa adanya. Aku sayang banget sama kamu dan nggak ada kata-kata yang bisa menggambarkan seberapa besar cintaku. Aku harap kita bisa melalui ini bersama.</div>
                 <div class="signature">Dari pacarmu yang kadang cupu tapi selalu cinta ❤️</div>
             </div>
-
-            <div class="nav-buttons" id="nav-buttons">
-                <button class="nav-btn" id="prev-btn" disabled><i class="fas fa-arrow-left"></i></button>
-                <button class="nav-btn" id="next-btn"><i class="fas fa-arrow-right"></i></button>
-            </div>
-            <div class="page-indicator" id="page-indicator">1/9</div>
         </div>
 
         <div class="music-control" id="music-control">
             <i class="fas fa-music"></i>
         </div>
     </div>
+    
+    <div class="nav-container" id="nav-container">
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prev-btn" disabled><i class="fas fa-heart"></i> PREV</button>
+            <button class="nav-btn" id="next-btn">NEXT <i class="fas fa-heart"></i></button>
+        </div>
+        <div class="page-indicator" id="page-indicator">1/9</div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Inisialisasi elemen
             const envelope = document.getElementById('envelope');
             const letter = document.getElementById('letter');
-            const prevBtn = document.getElementById('prev-btn');
+            const navContainer = document.getElementById('nav-container');
+            const prevBtn = document = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
             const pageIndicator = document.getElementById('page-indicator');
             const musicControl = document.getElementById('music-control');
             const pages = document.querySelectorAll('.page');
             const container = document.querySelector('.container');
 
-            // Audio element
             const bgMusic = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
             bgMusic.loop = true;
             bgMusic.volume = 0.5;
             let isMusicPlaying = false;
 
-            // Inisialisasi halaman
             let currentPage = 0;
             const totalPages = pages.length;
 
-            // Fungsi untuk membuat animasi love
             function createHearts() {
                 const heart = document.createElement('div');
                 heart.classList.add('love');
@@ -420,20 +473,18 @@
                 }, 5000);
             }
 
-            // Fungsi untuk update halaman
             function updatePage() {
                 pages.forEach(page => page.classList.remove('active'));
-                pages.forEach((page, index) => {
-                    if (index === currentPage) {
-                        page.classList.add('active');
-                    }
-                });
+                if (pages[currentPage]) {
+                    pages[currentPage].classList.add('active');
+                }
+                
                 prevBtn.disabled = currentPage === 0;
                 nextBtn.disabled = currentPage === totalPages - 1;
                 pageIndicator.textContent = `${currentPage + 1}/${totalPages}`;
+                letter.scrollTop = 0;
             }
 
-            // Event listeners
             nextBtn.addEventListener('click', () => {
                 if (currentPage < totalPages - 1) {
                     currentPage++;
@@ -466,6 +517,7 @@
                 }
                 setTimeout(() => {
                     letter.classList.add('show');
+                    navContainer.classList.add('show');
                     setTimeout(() => {
                         musicControl.classList.add('active');
                         bgMusic.play().catch(e => console.log("Autoplay prevented:", e));
