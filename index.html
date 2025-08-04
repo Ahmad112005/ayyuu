@@ -4,63 +4,367 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surat Maaf Bucin</title>
-    <style>
-        /* [CSS tetap sama seperti sebelumnya] */
-    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #ff69b4;
+            --secondary-color: #fff0f5;
+            --text-color: #333;
+            --bg-color: #fce4ec;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        /* --- Envelope Styles --- */
+        .envelope {
+            width: 300px;
+            height: 200px;
+            background-color: var(--primary-color);
+            position: relative;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: transform 1s ease-in-out;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .envelope:before, .envelope:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            border-style: solid;
+            border-color: transparent transparent var(--primary-color) transparent;
+            width: 0;
+            height: 0;
+        }
+        
+        .envelope:before {
+            border-width: 100px 150px 0 150px;
+            transform: translateY(100%);
+            left: 0;
+        }
+
+        .envelope:after {
+            border-width: 0 150px 100px 150px;
+            transform: rotateX(0deg);
+            transform-origin: top;
+            transition: transform 0.5s ease-in-out 0.5s;
+        }
+
+        .envelope.open:after {
+            transform: rotateX(180deg);
+            z-index: -1;
+        }
+
+        /* --- Letter Styles --- */
+        .letter {
+            width: 90%;
+            max-width: 350px;
+            height: 90%;
+            max-height: 500px;
+            background-color: var(--secondary-color);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.1);
+            opacity: 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            padding: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .letter.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            z-index: 200;
+        }
+
+        .page {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        .page h1 {
+            font-family: 'Pacifico', cursive;
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .page-photo {
+            width: 80%;
+            height: auto;
+            max-width: 250px;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .page-text {
+            font-size: 1.1em;
+            line-height: 1.6;
+            padding: 0 10px;
+        }
+
+        .hearts {
+            color: var(--primary-color);
+            font-size: 2em;
+            margin: 15px 0;
+            animation: pulse 1s infinite;
+        }
+        
+        .signature {
+            font-family: 'Pacifico', cursive;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: var(--primary-color);
+        }
+
+        /* --- Navigation & Control Styles --- */
+        .nav-buttons {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 300;
+        }
+        
+        .nav-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        
+        .nav-btn:hover {
+            background-color: #d1478f;
+            transform: translateY(-2px);
+        }
+        
+        .nav-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .page-indicator {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9em;
+            color: #888;
+            z-index: 300;
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 350;
+            transition: transform 0.3s ease;
+        }
+
+        .music-control.active {
+            display: flex;
+        }
+        
+        .music-control:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- Love hearts animation --- */
+        .love {
+            position: fixed;
+            top: 100vh;
+            color: var(--primary-color);
+            font-size: 2em;
+            animation: flyup 5s linear forwards;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        @keyframes flyup {
+            to {
+                top: -10vh;
+                transform: translateX(calc(var(--rand-x) * 100vw)) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* --- Mobile-first adjustments --- */
+        @media (max-width: 450px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+            
+            .envelope {
+                width: 280px;
+                height: 180px;
+            }
+
+            .envelope:before {
+                border-width: 90px 140px 0 140px;
+            }
+
+            .envelope:after {
+                border-width: 0 140px 90px 140px;
+            }
+
+            .letter {
+                width: 95%;
+                height: 95%;
+                padding: 15px;
+            }
+            
+            .page h1 {
+                font-size: 2em;
+            }
+
+            .page-text {
+                font-size: 1em;
+            }
+            
+            .signature {
+                font-size: 1.1em;
+            }
+            
+            .nav-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1em;
+            }
+            
+            .music-control {
+                width: 45px;
+                height: 45px;
+                font-size: 1em;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="envelope" id="envelope"></div>
         
         <div class="letter" id="letter">
-            <!-- Halaman judul -->
             <div class="page" id="page-0">
                 <h1>Maafin Aku, Sayangku~</h1>
-                <img src="foto1.jpg" alt="Foto Kita" class="page-photo">
+                <img src="https://via.placeholder.com/250/ff69b4/FFFFFF?text=Foto+Kita+1" alt="Foto Kita" class="page-photo">
                 <div class="hearts">♥ ♥ ♥</div>
             </div>
             
-            <!-- Halaman-halaman konten -->
             <div class="page" id="page-1">
-                <img src="foto2.jpg" alt="Foto Kita" class="page-photo">
+                <img src="https://via.placeholder.com/250/ffb6c1/FFFFFF?text=Foto+Kita+2" alt="Foto Kita" class="page-photo">
                 <div class="page-text">Haii kamu yang bikin hari-hariku berwarna 🌈 Aku mau ngucapin sesuatu yang penting nih...</div>
             </div>
             
             <div class="page" id="page-2">
-                <img src="foto3.jpg" alt="Foto Kita" class="page-photo">
+                <img src="https://via.placeholder.com/250/e9967a/FFFFFF?text=Foto+Kita+3" alt="Foto Kita" class="page-photo">
                 <div class="page-text">Aku mau minta maaf kalau tadi aku kayak kucing kesetrum ⚡ Aku nggak sengaja bikin kamu kesel.</div>
             </div>
             
             <div class="page" id="page-3">
-                <img src="foto4.jpg" alt="Foto Kita" class="page-photo">
+                <img src="https://via.placeholder.com/250/dda0dd/FFFFFF?text=Foto+Kita+4" alt="Foto Kita" class="page-photo">
                 <div class="page-text">Kamu tahu kan, kadang otakku suka error kaya WiFi lemot... Tapi percayalah, niatku selalu baik.</div>
             </div>
             
             <div class="page" id="page-4">
-                <img src="foto5.jpg" alt="Foto Kita" class="page-photo">
+                <img src="https://via.placeholder.com/250/ff69b4/FFFFFF?text=Foto+Kita+5" alt="Foto Kita" class="page-photo">
                 <div class="page-text">Tapi hatiku selalu full signal buat kamu 💖 Nggak ada yang bisa ngeganggu frekuensi cintaku ke kamu.</div>
                 <div class="hearts">♥ ♥ ♥</div>
             </div>
             
             <div class="page" id="page-5">
-                <img src="foto6.jpg" alt="Foto Kita" class="page-photo">
+                <img src="https://via.placeholder.com/250/fff0f5/333333?text=Foto+Kita+6" alt="Foto Kita" class="page-photo">
                 <div class="page-text">Kamu tuh kayak stiker favorit di WA aku. Setiap liat kamu, langsung pengen save terus di hati.</div>
             </div>
             
             <div class="page" id="page-6">
-                <img src="foto7.jpg" alt="Foto Kita" class="page-photo">
+                <img src="https://via.placeholder.com/250/e6e6fa/333333?text=Foto+Kita+7" alt="Foto Kita" class="page-photo">
                 <div class="page-text">Selalu bikin chat kita special dan pengen aku koleksi terus 🥰 Kayak chat pertama kita yang sampai sekarang masih aku screenshot.</div>
             </div>
             
             <div class="page" id="page-7">
-                <img src="foto8.jpg" alt="Foto Kita" class="page-photo">
+                <img src="https://via.placeholder.com/250/f08080/FFFFFF?text=Foto+Kita+8" alt="Foto Kita" class="page-photo">
                 <div class="page-text">Aku janji bakal lebih perhatian, nggak kayak baterai HP yang cepet lowbat 🔋 Aku bakal charge terus rasa sayangku buat kamu.</div>
             </div>
             
-            <!-- Halaman penutup -->
             <div class="page" id="page-8">
-                <img src="foto9.jpg" alt="Foto Kita" class="page-photo">
+                <img src="https://via.placeholder.com/250/ff69b4/FFFFFF?text=Foto+Kita+9" alt="Foto Kita" class="page-photo">
                 <div class="hearts">♥ ♥ ♥</div>
                 <div class="page-text">Makasih ya udah mau nerima aku apa adanya. Aku sayang banget sama kamu!</div>
                 <div class="signature">Dari pacarmu yang kadang cupu tapi selalu cinta ❤️</div>
@@ -91,17 +395,19 @@
             const container = document.querySelector('.container');
             
             // Verifikasi gambar
-            document.querySelectorAll('.page-photo').forEach((img, index) => {
-                const imgNum = index + 1;
+            document.querySelectorAll('.page-photo').forEach((img) => {
+                // Gunakan placeholder agar tampilan tetap ada meskipun gambar asli tidak ditemukan
+                const placeholderUrl = `https://via.placeholder.com/250/${Math.floor(Math.random()*16777215).toString(16)}/FFFFFF?text=Foto+Kita`;
                 img.onerror = function() {
-                    console.error(`Gambar foto${imgNum}.jpg tidak ditemukan`);
-                    this.style.display = 'none';
+                    console.error(`Gambar tidak ditemukan, menggunakan placeholder`);
+                    this.src = placeholderUrl;
                 };
             });
 
             // Audio element
             const bgMusic = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
             bgMusic.loop = true;
+            bgMusic.volume = 0.5; // Set volume agar tidak terlalu keras
             let isMusicPlaying = false;
             
             // Inisialisasi halaman
@@ -115,6 +421,7 @@
                 heart.innerHTML = '♥';
                 heart.style.left = Math.random() * 100 + 'vw';
                 heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+                heart.style.setProperty('--rand-x', (Math.random() - 0.5) * 0.2); // Memberikan sedikit variasi arah
                 container.appendChild(heart);
                 
                 setTimeout(() => {
@@ -176,8 +483,11 @@
             
             document.addEventListener('keydown', (e) => {
                 if (!letter.classList.contains('show')) return;
-                if (e.key === 'ArrowRight') nextBtn.click();
-                else if (e.key === 'ArrowLeft') prevBtn.click();
+                if (e.key === 'ArrowRight' && !nextBtn.disabled) {
+                    nextBtn.click();
+                } else if (e.key === 'ArrowLeft' && !prevBtn.disabled) {
+                    prevBtn.click();
+                }
             });
 
             updatePage();
