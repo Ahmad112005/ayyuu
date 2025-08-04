@@ -58,7 +58,7 @@
             width: 0;
             height: 0;
         }
-        
+
         .envelope:before {
             border-width: 100px 150px 0 150px;
             transform: translateY(100%);
@@ -135,8 +135,9 @@
             object-fit: cover;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             margin-bottom: 20px;
+            border: 2px solid #ccc; /* Bingkai kotak */
         }
-        
+
         .page-text {
             font-size: 1.1em;
             line-height: 1.6;
@@ -149,7 +150,7 @@
             margin: 15px 0;
             animation: pulse 1s infinite;
         }
-        
+
         .signature {
             font-family: 'Pacifico', cursive;
             margin-top: 20px;
@@ -167,7 +168,7 @@
             gap: 15px;
             z-index: 300;
         }
-        
+
         .nav-btn {
             background-color: var(--primary-color);
             color: white;
@@ -180,12 +181,12 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             transition: background-color 0.3s, transform 0.2s;
         }
-        
+
         .nav-btn:hover {
             background-color: #d1478f;
             transform: translateY(-2px);
         }
-        
+
         .nav-btn:disabled {
             background-color: #ccc;
             cursor: not-allowed;
@@ -224,7 +225,7 @@
         .music-control.active {
             display: flex;
         }
-        
+
         .music-control:hover {
             transform: scale(1.1);
         }
@@ -258,7 +259,7 @@
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
-        
+
         /* --- Mobile-first adjustments --- */
         @media (max-width: 450px) {
             body {
@@ -268,7 +269,7 @@
             .container {
                 max-width: 100%;
             }
-            
+
             .envelope {
                 width: 280px;
                 height: 180px;
@@ -287,7 +288,7 @@
                 height: 95%;
                 padding: 15px;
             }
-            
+
             .page h1 {
                 font-size: 2em;
             }
@@ -295,17 +296,17 @@
             .page-text {
                 font-size: 1em;
             }
-            
+
             .signature {
                 font-size: 1.1em;
             }
-            
+
             .nav-btn {
                 width: 45px;
                 height: 45px;
                 font-size: 1em;
             }
-            
+
             .music-control {
                 width: 45px;
                 height: 45px;
@@ -319,64 +320,64 @@
 <body>
     <div class="container">
         <div class="envelope" id="envelope"></div>
-        
+
         <div class="letter" id="letter">
             <div class="page" id="page-0">
                 <h1>Maafin Aku, Sayangku~</h1>
-                <img src="https://via.placeholder.com/250/ff69b4/FFFFFF?text=Foto+Kita+1" alt="Foto Kita" class="page-photo">
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto1.jpeg" alt="Foto Kita 1" class="page-photo">
                 <div class="hearts">♥ ♥ ♥</div>
             </div>
-            
+
             <div class="page" id="page-1">
-                <img src="https://via.placeholder.com/250/ffb6c1/FFFFFF?text=Foto+Kita+2" alt="Foto Kita" class="page-photo">
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto2.jpeg" alt="Foto Kita 2" class="page-photo">
                 <div class="page-text">Haii kamu yang bikin hari-hariku berwarna 🌈 Aku mau ngucapin sesuatu yang penting nih...</div>
             </div>
-            
+
             <div class="page" id="page-2">
-                <img src="https://via.placeholder.com/250/e9967a/FFFFFF?text=Foto+Kita+3" alt="Foto Kita" class="page-photo">
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto3.jpeg" alt="Foto Kita 3" class="page-photo">
                 <div class="page-text">Aku mau minta maaf kalau tadi aku kayak kucing kesetrum ⚡ Aku nggak sengaja bikin kamu kesel.</div>
             </div>
-            
+
             <div class="page" id="page-3">
-                <img src="https://via.placeholder.com/250/dda0dd/FFFFFF?text=Foto+Kita+4" alt="Foto Kita" class="page-photo">
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto4.jpeg" alt="Foto Kita 4" class="page-photo">
                 <div class="page-text">Kamu tahu kan, kadang otakku suka error kaya WiFi lemot... Tapi percayalah, niatku selalu baik.</div>
             </div>
-            
+
             <div class="page" id="page-4">
-                <img src="https://via.placeholder.com/250/ff69b4/FFFFFF?text=Foto+Kita+5" alt="Foto Kita" class="page-photo">
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto5.jpeg" alt="Foto Kita 5" class="page-photo">
                 <div class="page-text">Tapi hatiku selalu full signal buat kamu 💖 Nggak ada yang bisa ngeganggu frekuensi cintaku ke kamu.</div>
                 <div class="hearts">♥ ♥ ♥</div>
             </div>
-            
+
             <div class="page" id="page-5">
-                <img src="https://via.placeholder.com/250/fff0f5/333333?text=Foto+Kita+6" alt="Foto Kita" class="page-photo">
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto6.jpeg" alt="Foto Kita 6" class="page-photo">
                 <div class="page-text">Kamu tuh kayak stiker favorit di WA aku. Setiap liat kamu, langsung pengen save terus di hati.</div>
             </div>
-            
+
             <div class="page" id="page-6">
-                <img src="https://via.placeholder.com/250/e6e6fa/333333?text=Foto+Kita+7" alt="Foto Kita" class="page-photo">
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto7.jpeg" alt="Foto Kita 7" class="page-photo">
                 <div class="page-text">Selalu bikin chat kita special dan pengen aku koleksi terus 🥰 Kayak chat pertama kita yang sampai sekarang masih aku screenshot.</div>
             </div>
-            
+
             <div class="page" id="page-7">
-                <img src="https://via.placeholder.com/250/f08080/FFFFFF?text=Foto+Kita+8" alt="Foto Kita" class="page-photo">
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto8.jpeg" alt="Foto Kita 8" class="page-photo">
                 <div class="page-text">Aku janji bakal lebih perhatian, nggak kayak baterai HP yang cepet lowbat 🔋 Aku bakal charge terus rasa sayangku buat kamu.</div>
             </div>
-            
+
             <div class="page" id="page-8">
-                <img src="https://via.placeholder.com/250/ff69b4/FFFFFF?text=Foto+Kita+9" alt="Foto Kita" class="page-photo">
+                <img src="https://raw.githubusercontent.com/Ahmad112005/ayyuu/4ca6cc7f21c77f79088bcddf8c3329d8dd07738e/foto9.jpeg" alt="Foto Kita 9" class="page-photo">
                 <div class="hearts">♥ ♥ ♥</div>
                 <div class="page-text">Makasih ya udah mau nerima aku apa adanya. Aku sayang banget sama kamu!</div>
                 <div class="signature">Dari pacarmu yang kadang cupu tapi selalu cinta ❤️</div>
             </div>
-            
+
             <div class="nav-buttons" id="nav-buttons">
                 <button class="nav-btn" id="prev-btn" disabled><i class="fas fa-arrow-left"></i></button>
                 <button class="nav-btn" id="next-btn"><i class="fas fa-arrow-right"></i></button>
             </div>
             <div class="page-indicator" id="page-indicator">1/9</div>
         </div>
-        
+
         <div class="music-control" id="music-control">
             <i class="fas fa-music"></i>
         </div>
@@ -393,27 +394,17 @@
             const musicControl = document.getElementById('music-control');
             const pages = document.querySelectorAll('.page');
             const container = document.querySelector('.container');
-            
-            // Verifikasi gambar
-            document.querySelectorAll('.page-photo').forEach((img) => {
-                // Gunakan placeholder agar tampilan tetap ada meskipun gambar asli tidak ditemukan
-                const placeholderUrl = `https://via.placeholder.com/250/${Math.floor(Math.random()*16777215).toString(16)}/FFFFFF?text=Foto+Kita`;
-                img.onerror = function() {
-                    console.error(`Gambar tidak ditemukan, menggunakan placeholder`);
-                    this.src = placeholderUrl;
-                };
-            });
 
             // Audio element
             const bgMusic = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
             bgMusic.loop = true;
-            bgMusic.volume = 0.5; // Set volume agar tidak terlalu keras
+            bgMusic.volume = 0.5;
             let isMusicPlaying = false;
-            
+
             // Inisialisasi halaman
             let currentPage = 0;
             const totalPages = pages.length;
-            
+
             // Fungsi untuk membuat animasi love
             function createHearts() {
                 const heart = document.createElement('div');
@@ -421,23 +412,27 @@
                 heart.innerHTML = '♥';
                 heart.style.left = Math.random() * 100 + 'vw';
                 heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-                heart.style.setProperty('--rand-x', (Math.random() - 0.5) * 0.2); // Memberikan sedikit variasi arah
+                heart.style.setProperty('--rand-x', (Math.random() - 0.5) * 0.2);
                 container.appendChild(heart);
-                
+
                 setTimeout(() => {
                     heart.remove();
                 }, 5000);
             }
-            
+
             // Fungsi untuk update halaman
             function updatePage() {
                 pages.forEach(page => page.classList.remove('active'));
-                pages[currentPage].classList.add('active');
+                pages.forEach((page, index) => {
+                    if (index === currentPage) {
+                        page.classList.add('active');
+                    }
+                });
                 prevBtn.disabled = currentPage === 0;
                 nextBtn.disabled = currentPage === totalPages - 1;
                 pageIndicator.textContent = `${currentPage + 1}/${totalPages}`;
             }
-            
+
             // Event listeners
             nextBtn.addEventListener('click', () => {
                 if (currentPage < totalPages - 1) {
@@ -445,14 +440,14 @@
                     updatePage();
                 }
             });
-            
+
             prevBtn.addEventListener('click', () => {
                 if (currentPage > 0) {
                     currentPage--;
                     updatePage();
                 }
             });
-            
+
             musicControl.addEventListener('click', () => {
                 if (isMusicPlaying) {
                     bgMusic.pause();
@@ -463,7 +458,7 @@
                 }
                 isMusicPlaying = !isMusicPlaying;
             });
-            
+
             envelope.addEventListener('click', function() {
                 this.classList.add('open');
                 for (let i = 0; i < 20; i++) {
@@ -480,7 +475,7 @@
                     updatePage();
                 }, 500);
             });
-            
+
             document.addEventListener('keydown', (e) => {
                 if (!letter.classList.contains('show')) return;
                 if (e.key === 'ArrowRight' && !nextBtn.disabled) {
